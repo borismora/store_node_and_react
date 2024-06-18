@@ -1,8 +1,8 @@
 export default async function fetchProducts ({ filters }) {
   try {
-    console.log(`http://localhost:8000/products${filters}`)
+    console.log(`${import.meta.env.VITE_API_URL}/products${filters}`)
     const res = await fetch(
-      `http://localhost:8000/products${filters}`
+      `${import.meta.env.VITE_API_URL}/products${filters}`
     )
     const data = await res.json()
 

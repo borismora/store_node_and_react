@@ -1,7 +1,7 @@
 export default async function Categories () {
   try {
     const res = await fetch(
-      'http://localhost:8000/categories'
+      `${import.meta.env.VITE_API_URL}/categories`
     )
     const data = await res.json()
 
