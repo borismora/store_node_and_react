@@ -1,0 +1,15 @@
+.footer {
+  background-color: #00050c;
+  color: aliceblue;
+  text-align: center;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.footer a {
+  text-decoration: none;
+  color: inherit;
+}

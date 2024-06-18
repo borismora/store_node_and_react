@@ -1,0 +1,29 @@
+.filters {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0 200px;
+  margin-bottom: 20px;
+}
+
+.filters > div {
+  display: flex;
+  gap: 1rem;
+  margin-right: 20px;
+}
+
+.filters > div > button {
+  background-color: #3775c0;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  align-self: center;
+}
+
+.filters > div > button:hover {
+  background-color: #1e63a0;
+}

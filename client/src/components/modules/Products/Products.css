@@ -1,0 +1,15 @@
+.products {
+  margin: 0 200px;
+}
+
+.products ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .products {
+    margin: 0;
+  }
+}

@@ -1,0 +1,128 @@
+/* Navbar.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+.navbar {
+  background-color: #3775c0; /* Blue color */
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px; /* 16 * 4 = 64px (4rem) */
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-title {
+  color: white;
+  font-size: 1.5rem; /* 24px */
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  margin-right: 16px;
+}
+
+.cart-button,
+.login-button {
+  background-color: #38a169; /* Green color */
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 8px 16px;
+  margin-right: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s;
+}
+
+.cart-button:hover,
+.login-button:hover {
+  background-color: #2f855a; /* Darker green */
+}
+
+.cart-icon {
+  height: 24px;
+  width: 24px;
+  margin-right: 4px;
+}
+
+.navbar-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.navbar-toggle .bar {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 4px 0;
+  transition: 0.4s;
+}
+
+.navbar-toggle .bar.open {
+  transform: rotate(45deg);
+  background-color: #2f855a;
+}
+
+.navbar-mobile {
+  display: none;
+  flex-direction: column;
+  background-color: #3775c0;
+  position: absolute;
+  top: 64px;
+  left: 0;
+  width: 100%;
+  padding: 16px;
+  z-index: 1000;
+}
+
+@media (max-width: 768px) {
+  .navbar-right {
+    display: none;
+  }
+
+  .navbar-toggle {
+    display: flex;
+  }
+
+  .navbar-mobile {
+    display: flex;
+  }
+}
