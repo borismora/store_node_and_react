@@ -14,10 +14,12 @@ const productController = {
       const searchTerm = req.query.search || '';
       const offset = (page - 1) * limit;
       const minPrice = parseInt(req.query.minPrice, 10) || 0;
+      const category = parseInt(req.query.category) || null;
 
       const whereClause = {
         name: { [Op.iLike]: `%${searchTerm}%` }, // Usando iLike para búsqueda insensible a mayúsculas y minúsculas
-        price: { [Op.gte]: minPrice }
+        price: { [Op.gte]: minPrice },
+        ...(category !== null && { categoryId: { [Op.eq]: category } })
       };
 
       const totalProducts = await Product.count({
