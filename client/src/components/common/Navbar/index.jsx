@@ -27,7 +27,7 @@ export default function Navbar () {
         </div>
         <div className='navbar-right'>
           <input type='text' placeholder='Buscar productos...' className='search-input' onKeyUp={handleSearch} />
-          <button className='login-button'>Iniciar Sesión</button>
+          <a href='/login' className='login-button'>Iniciar Sesión</a>
           <button className='cart-button'>
             <svg xmlns='http://www.w3.org/2000/svg' className='cart-icon' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
               <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z' />
@@ -42,7 +42,7 @@ export default function Navbar () {
       {menuOpen && (
         <div className='navbar-mobile'>
           <input type='text' placeholder='Buscar productos...' className='search-input' onKeyUp={handleSearch} />
-          <button className='login-button'>Iniciar Sesión</button>
+          <a href='/login' className='login-button'>Iniciar Sesión</a>
           <button className='cart-button'>
             <svg xmlns='http://www.w3.org/2000/svg' className='cart-icon' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
               <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z' />

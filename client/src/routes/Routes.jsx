@@ -6,7 +6,8 @@ import {
 
 import Main from '../layouts/Main'
 import Home from '../pages/Home'
-import SignIn from '../pages/SignIn';
+import Login from '../pages/Login';
+import NotFound from '../pages/NotFound';
 
 export default function RoutesModule () {
   return (
@@ -14,8 +15,8 @@ export default function RoutesModule () {
       <Main>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/signin' element={<SignIn />} />
-          {/* Aquí puedes agregar más rutas para otras páginas */}
+          <Route path='/login' element={<Login />} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
       </Main>
     </Router>

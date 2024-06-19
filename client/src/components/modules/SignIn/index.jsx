@@ -1,4 +1,4 @@
-import './SignIn.css'
+import '../../../pages/Login/Login.css'
 
 export default function SignIn () {
   return (
