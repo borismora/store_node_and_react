@@ -1,19 +1,21 @@
 import './Navbar.css'
 import { useCallback, useState } from 'react'
+import { useAuth } from '../../../context/AuthContext'
 import useNavigation from '../../../hooks/useNavigation'
 import useFilters from '../../../hooks/useFilters'
 
 export default function Navbar () {
   const { navigateTo } = useNavigation()
   const { setFilters } = useFilters()
+  const { user, logout } = useAuth()
   const [menuOpen, setMenuOpen] = useState(false)
 
   const handleSearch = useCallback((e) => {
     if (e.key === 'Enter') {
       e.preventDefault()
-      setFilters(prevState => ({
+      setFilters((prevState) => ({
         ...prevState,
-        search: e.target.value
+        search: e.target.value,
       }))
       navigateTo({ newSearch: e.target.value, newPage: 1 })
     }
@@ -27,7 +29,14 @@ export default function Navbar () {
         </div>
         <div className='navbar-right'>
           <input type='text' placeholder='Buscar productos...' className='search-input' onKeyUp={handleSearch} />
-          <a href='/login' className='login-button'>Iniciar Sesión</a>
+          {user ? (
+            <>
+              <a href='/profile' className='login-button'>Mi Perfil</a>
+              <button onClick={logout} className='login-button'>Cerrar Sesión</button>
+            </>
+          ) : (
+            <a href='/login' className='login-button'>Iniciar Sesión</a>
+          )}
           <button className='cart-button'>
             <svg xmlns='http://www.w3.org/2000/svg' className='cart-icon' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
               <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z' />
@@ -42,7 +51,14 @@ export default function Navbar () {
       {menuOpen && (
         <div className='navbar-mobile'>
           <input type='text' placeholder='Buscar productos...' className='search-input' onKeyUp={handleSearch} />
-          <a href='/login' className='login-button'>Iniciar Sesión</a>
+          {user ? (
+            <>
+              <a href='/profile' className='login-button'>Mi Perfil</a>
+              <button onClick={logout} className='login-button'>Cerrar Sesión</button>
+            </>
+          ) : (
+            <a href='/login' className='login-button'>Iniciar Sesión</a>
+          )}
           <button className='cart-button'>
             <svg xmlns='http://www.w3.org/2000/svg' className='cart-icon' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
               <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z' />

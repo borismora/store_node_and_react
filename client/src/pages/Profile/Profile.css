@@ -1,0 +1,39 @@
+.profile {
+  margin: 0 100px;
+}
+
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.profile-header h1 {
+  text-align: start;
+  margin: 20px 10px;
+}
+
+.profile-container table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.profile-container table th,
+.profile-container table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.profile-orders {
+  margin-top: 20px;
+}
+
+.profile-orders h3 {
+  margin: 20px 10px;
+}
+
+.profile-orders p {
+  text-align: center;
+}

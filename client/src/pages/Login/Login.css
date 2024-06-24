@@ -13,9 +13,22 @@
   margin: 0 600px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1680px) {
+  .box {
+    margin: 0 400px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .box {
+    margin: 0 200px;
+  }
+}
+
+@media (max-width: 950px) {
   .box {
     margin: 0;
+    padding: 70px 10px;
   }
 }
 

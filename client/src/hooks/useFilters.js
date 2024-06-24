@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { FiltersContext } from '../context/filters'
+import { FiltersContext } from '../context/FiltersContext'
 import { useSearchParams } from 'react-router-dom'
 
 export default function useFilters () {
@@ -7,8 +7,6 @@ export default function useFilters () {
   const [searchParams] = useSearchParams()
 
   function getFilters () {
-    console.log(searchParams.get('search'))
-    console.log(`?page=${currentPage()}&minPrice=${filters.minPrice}&category=${filters.category}&search=${currentSearch()}`)
     return `?page=${currentPage()}&minPrice=${filters.minPrice}&category=${filters.category}&search=${currentSearch()}`
   }
 

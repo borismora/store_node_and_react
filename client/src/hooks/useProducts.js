@@ -2,7 +2,7 @@ import { useState, useCallback, useRef } from 'react'
 import fetchProducts from '../services/products'
 import useFilters from '../hooks/useFilters'
 
-export function useProducts () {
+export default function useProducts () {
   const page = useRef({ currentPage: 1, totalPages: 0 })
   const [products, setProducts] = useState([])
   const [isLoading, setIsLoading] = useState(true)
@@ -32,5 +32,3 @@ export function useProducts () {
     getProducts
   }
 }
-
-export default useProducts

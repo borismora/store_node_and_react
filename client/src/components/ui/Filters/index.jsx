@@ -39,27 +39,29 @@ export function Filters () {
 
   return (
     <section className='filters'>
-      <div>
-        <label htmlFor={minPriceFilterId}>Precio a partir de: </label>
-        <input type='range' id={minPriceFilterId} min={0} max={100000} onChange={handleChangeMinPrice} value={minPrice} />
-        <span>${minPrice}</span>
-      </div>
+      <form className='filters__form'>
+        <div className='form-group'>
+          <label htmlFor={minPriceFilterId}>Precio a partir de: </label>
+          <input type='range' id={minPriceFilterId} min={0} max={100000} onChange={handleChangeMinPrice} value={minPrice} />
+          <span>${minPrice}</span>
+        </div>
 
-      <div>
-        <label htmlFor={categoryFilterId}>Categoría</label>
-        <select id={categoryFilterId} onChange={handleChangeCategory}>
-          <option value='all'>Todas</option>
-          {categories.map(category => (
-            <option key={category.id} value={category.id}>
-              {category.name}
-            </option>
-          ))}
-        </select>
-      </div>
+        <div className='form-group'>
+          <label htmlFor={categoryFilterId}>Categoría</label>
+          <select id={categoryFilterId} onChange={handleChangeCategory}>
+            <option value='all'>Todas</option>
+            {categories.map(category => (
+              <option key={category.id} value={category.id}>
+                {category.name}
+              </option>
+            ))}
+          </select>
+        </div>
 
-      <div>
-        <button onClick={handleApplyFilters}>Aplicar</button>
-      </div>
+        <div className='form-group'>
+          <button type='button' onClick={handleApplyFilters}>Aplicar</button>
+        </div>
+      </form>
     </section>
   )
 }

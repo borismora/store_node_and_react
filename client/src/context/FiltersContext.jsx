@@ -18,5 +18,5 @@ export function FiltersProvider ({ children }) {
 }
 
 export function useFilters () {
-  return useContext(FiltersContext);
+  return useContext(FiltersContext)
 }

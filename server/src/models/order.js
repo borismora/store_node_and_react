@@ -2,7 +2,7 @@
 import Sequelize, { Model } from 'sequelize';
 
 class Order extends Model {
-  static init(sequelize) {
+  static init (sequelize) {
     super.init(
       {
         userId: {
@@ -33,7 +33,7 @@ class Order extends Model {
     return this;
   }
 
-  static associate(models) {
+  static associate (models) {
     this.belongsTo(models.User, { foreignKey: 'userId' });
     this.hasMany(models.OrderProduct, { foreignKey: 'orderId' });
   }

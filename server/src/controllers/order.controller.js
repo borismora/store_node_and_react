@@ -1,12 +1,35 @@
 import Order from '../models/order';
+import JwtService from '../services/jwt.service';
 
 const orderController = {
 
   get: async (req, res, next) => {
     try {
-      const orders = await Order.findAll({});
+      // Extraer el token del header
+      const token = JwtService.jwtGetToken(req);
+      console.log("Token:", token); // Log del token
+
+      // Verificar y decodificar el token
+      const decoded = JwtService.jwtVerify(token);
+      console.log("Decoded Token:", decoded); // Log del token decodificado
+
+      // Obtener el userId del token decodificado
+      const userId = decoded.userId;
+      console.log("User ID:", userId); // Log del userId
+
+      // Verificar que userId no es undefined
+      if (!userId) {
+        throw new Error('User ID not found in token');
+      }
+
+      // Buscar los pedidos del usuario
+      const orders = await Order.findAll({
+        where: { userId }
+      });
+
       return res.status(200).json(orders);
     } catch (error) {
+      console.error("Error in get orders:", error); // Log del error
       next(error);
     }
   },
@@ -45,9 +68,9 @@ const orderController = {
   },
 };
 
-function updateOrderStatus(order, status) {
+function updateOrderStatus (order, status) {
   order.update({ status: status });
-  
+
   if (status !== 'completed') {
     setTimeout(updateOrderStatus, 10000, order, 'completed');
   }

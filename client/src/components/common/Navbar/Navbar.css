@@ -126,4 +126,10 @@ body {
   .navbar-mobile {
     display: flex;
   }
+
+  .cart-button,
+  .login-button {
+    margin-top: 5px;
+    margin-right: 14px;
+  }
 }

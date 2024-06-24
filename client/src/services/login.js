@@ -1,7 +1,7 @@
 export async function signIn ({ email, password }) {
   try {
     const res = await fetch(
-      `${import.meta.env.VITE_API_URL}/login`,
+      `${import.meta.env.VITE_API_URL}/signin`,
       {
         method: 'POST',
         headers: {
@@ -21,7 +21,7 @@ export async function signIn ({ email, password }) {
 export async function signUp ({ name, email, password }) {
   try {
     const res = await fetch(
-      `${import.meta.env.VITE_API_URL}/register`,
+      `${import.meta.env.VITE_API_URL}/signup`,
       {
         method: 'POST',
         headers: {

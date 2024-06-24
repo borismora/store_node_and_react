@@ -50,9 +50,9 @@ loginRoutes.post('/signup', loginController.signUp);
  *   name: Authentication
  *   description: User authentication operations
  * 
- * /login:
+ * /signin:
  *   post:
- *     summary: User login
+ *     summary: User signin
  *     description: Authenticate a user based on provided email and password.
  *     tags: [Authentication]
  *     requestBody:
@@ -88,7 +88,7 @@ loginRoutes.post('/signup', loginController.signUp);
  *       500:
  *         description: Internal Server Error
  */
-loginRoutes.post("/login", loginController.login);
+loginRoutes.post("/signin", loginController.signIn);
 
 /**
  * @swagger
