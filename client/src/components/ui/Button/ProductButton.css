@@ -1,0 +1,19 @@
+.add-to-cart-button {
+  background-color: #38a169; /* Green color */
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s;
+  width: 90%;
+  justify-content: center;
+  margin-bottom: 6px;
+}
+
+.add-to-cart-button:hover {
+  background-color: #2f855a; /* Darker green */
+}

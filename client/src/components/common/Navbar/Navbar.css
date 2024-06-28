@@ -56,27 +56,6 @@ body {
   margin-right: 16px;
 }
 
-.cart-button,
-.login-button {
-  background-color: #38a169; /* Green color */
-  color: white;
-  font-weight: bold;
-  border: none;
-  padding: 8px 16px;
-  margin-right: 8px;
-  border-radius: 4px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  transition: background-color 0.3s;
-  text-decoration: none;
-}
-
-.cart-button:hover,
-.login-button:hover {
-  background-color: #2f855a; /* Darker green */
-}
-
 .cart-icon {
   height: 24px;
   width: 24px;
@@ -125,11 +104,5 @@ body {
 
   .navbar-mobile {
     display: flex;
-  }
-
-  .cart-button,
-  .login-button {
-    margin-top: 5px;
-    margin-right: 14px;
   }
 }

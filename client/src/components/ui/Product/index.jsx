@@ -1,5 +1,6 @@
 import './Product.css'
 import formatPrice from '../../../utils/formatPrice'
+import { Button } from '../Button'
 
 export default function Product ({ id, name, image, price }) {
   return (
@@ -11,7 +12,12 @@ export default function Product ({ id, name, image, price }) {
         <p className='product-name'>{name}</p>
         <strong className='product-price'>$ {formatPrice(price)}</strong>
         <br />
-        <button className='add-to-cart-button'>Agregar</button>
+        <Button
+          params={{
+            className: 'add-to-cart-button',
+            title: 'Añadir al carrito'
+          }}
+        />
       </div>
     </li>
   )
