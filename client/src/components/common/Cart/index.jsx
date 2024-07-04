@@ -7,13 +7,13 @@ function CartItem ({ image, price, name, quantity, addToCart }) {
   return (
     <li>
       <img src={image} alt={name} />
-      <div>
+      <div className='cart-title'>
         <strong>{name}</strong> {price}
       </div>
 
       <footer>
         <small>Qty: {quantity}</small>
-        <button onClick={addToCart}>+</button>
+        <button onClick={addToCart} className='add-button'>+</button>
       </footer>
     </li>
   )
@@ -41,9 +41,11 @@ export function Cart () {
           ))}
         </ul>
 
-        <button onClick={clearCart}>
-          <ClearCartIcon />
-        </button>
+        <div className='clear-button-content'>
+          <button onClick={clearCart} className='clear-button'>
+            <ClearCartIcon />
+          </button>
+        </div>
       </aside>
     </>
   )
