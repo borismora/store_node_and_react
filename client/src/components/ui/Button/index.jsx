@@ -1,5 +1,6 @@
 import './ProductButton.css'
 import './NavbarButton.css'
+import './CartButton.css'
 
 export function Button ({ params, ...rest }) {
   const { className, title, onClick } = params || {};
@@ -27,5 +28,21 @@ export function AButton ({ params, ...rest }) {
     >
       {title}
     </a>
+  );
+}
+
+export function LButton ({ params, ...rest }) {
+  const { className, title, onClick, href, htmlFor } = params || {};
+
+  return (
+    <label
+      className={className}
+      onClick={onClick}
+      htmlFor={htmlFor}
+      href={href}
+      {...rest} // Other props like `disabled`, `type`, etc.
+    >
+      {title}
+    </label>
   );
 }

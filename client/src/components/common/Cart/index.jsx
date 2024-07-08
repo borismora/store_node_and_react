@@ -2,13 +2,15 @@ import './Cart.css'
 import { useId } from 'react'
 import { CartIcon, ClearCartIcon } from '../../ui/Icons'
 import { useCart } from '../../../hooks/useCart'
+import { LButton } from '../../ui/Button'
 
 function CartItem ({ image, price, name, quantity, addToCart }) {
   return (
     <li>
       <img src={image} alt={name} />
       <div className='cart-title'>
-        <strong>{name}</strong> {price}
+        <strong>{name}</strong>
+        <br /> ${price}
       </div>
 
       <footer>
@@ -25,9 +27,18 @@ export function Cart () {
 
   return (
     <>
-      <label htmlFor={cartCheckBoxId} className='cart-button'>
-        <CartIcon />
-      </label>
+      <LButton
+        params={{
+          className: 'cart-button navbar-button',
+          htmlFor: cartCheckBoxId,
+          title: (
+            <>
+              <CartIcon />
+              0
+            </>
+          )
+        }}
+      />
       <input type="checkbox" id={cartCheckBoxId} hidden />
 
       <aside className='cart'>

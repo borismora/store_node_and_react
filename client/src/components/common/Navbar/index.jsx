@@ -3,7 +3,8 @@ import { useCallback, useState } from 'react'
 import { useAuth } from '../../../context/AuthContext'
 import useNavigation from '../../../hooks/useNavigation'
 import useFilters from '../../../hooks/useFilters'
-import { Button, AButton } from '../../ui/Button'
+import { AButton } from '../../ui/Button'
+import { Cart } from '../../common/Cart'
 
 export default function Navbar () {
   const { navigateTo } = useNavigation()
@@ -56,19 +57,7 @@ export default function Navbar () {
               }}
             />
           )}
-          <Button
-            params={{
-              className: 'navbar-button',
-              title: (
-                <>
-                  <svg xmlns='http://www.w3.org/2000/svg' className='cart-icon' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-                    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z' />
-                  </svg>
-                  0
-                </>
-              )
-            }}
-          />
+          <Cart />
         </div>
         <div className='navbar-toggle' onClick={() => setMenuOpen(!menuOpen)}>
           <div className={`bar ${menuOpen ? 'open' : ''}`}></div>
@@ -103,19 +92,7 @@ export default function Navbar () {
               }}
             />
           )}
-          <Button
-            params={{
-              className: 'navbar-button',
-              title: (
-                <>
-                  <svg xmlns='http://www.w3.org/2000/svg' className='cart-icon' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-                    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z' />
-                  </svg>
-                  0
-                </>
-              )
-            }}
-          />
+          <Cart />
         </div>
       )}
     </nav>
