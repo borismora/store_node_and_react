@@ -1,5 +1,5 @@
 import './Cart.css'
-import { useId } from 'react'
+import { useEffect, useId } from 'react'
 import { CartIcon, ClearCartIcon } from '../../ui/Icons'
 import { useCart } from '../../../hooks/useCart'
 import { LButton } from '../../ui/Button'
@@ -21,9 +21,27 @@ function CartItem ({ image, price, name, quantity, addToCart }) {
   )
 }
 
+function cartQuantity (cart) {
+  return cart.reduce((total, product) => total + product.quantity, 0)
+}
+
 export function Cart () {
   const cartCheckBoxId = useId()
   const { cart, addToCart, clearCart } = useCart()
+  const itemsQuantity = cartQuantity(cart)
+
+  useEffect(() => {
+    const storedCart = localStorage.getItem('cart')
+
+    if (storedCart) {
+      const parsedCart = JSON.parse(storedCart)
+      parsedCart.map((product) => ( addToCart(product) ))
+    }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart))
+  }, [cart])
 
   return (
     <>
@@ -34,7 +52,7 @@ export function Cart () {
           title: (
             <>
               <CartIcon />
-              0
+              {itemsQuantity}
             </>
           )
         }}
