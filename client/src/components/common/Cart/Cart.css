@@ -1,7 +1,7 @@
 .cart {
   background: #000;
   display: none;
-  padding: 32px;
+  padding: 16px;
   position: fixed;
   right: 0px;
   top: 0px;
@@ -59,14 +59,21 @@
   scale: 1.1;
 }
 
+.remove-button,
 .add-button {
-  background-color: #38a169;
   color: white;
-  padding: 8px;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
   transition: all 0.3s ease;
+}
+
+.remove-button {
+  background-color: rgb(248, 33, 33);
+}
+
+.add-button {
+  background-color: #38a169;
 }
 
 .cart-title {

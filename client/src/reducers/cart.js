@@ -5,6 +5,7 @@ export function CartReducer (state, action) {
 
   switch (ActionType) {
     case 'ADD_TO_CART': {
+      console.log('ADD_TO_CART', ActionPayload)
       const { id } = ActionPayload
       const productInCartIndex = state.findIndex(item => item.id === id)
 
@@ -18,8 +19,19 @@ export function CartReducer (state, action) {
     }
 
     case 'REMOVE_FROM_CART': {
+      console.log('REMOVE_FROM_CART', ActionPayload)
       const { id } = ActionPayload
-      return state.filter(item => item.id !== id)
+      const productInCartIndex = state.findIndex(item => item.id === id)
+      console.log(ActionPayload)
+      console.log('productInCartIndex', productInCartIndex)
+
+      if (productInCartIndex >= 0 && state[productInCartIndex].quantity > 1) {
+        const newState = structuredClone(state)
+        newState[productInCartIndex].quantity -= 1
+        return newState
+      }
+
+      return [...state]
     }
 
     case 'CLEAR_CART': {

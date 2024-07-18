@@ -11,9 +11,9 @@ function useCartReducer () {
     payload: product
   })
 
-  const removeFromCart = (id) => dispatch({
+  const removeFromCart = (product) => dispatch({
     type: 'REMOVE_FROM_CART',
-    payload: { id }
+    payload: product
   })
 
   const clearCart = () => dispatch({ type: 'CLEAR_CART' })

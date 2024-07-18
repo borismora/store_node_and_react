@@ -4,7 +4,7 @@ import { CartIcon, ClearCartIcon } from '../../ui/Icons'
 import { useCart } from '../../../hooks/useCart'
 import { LButton } from '../../ui/Button'
 
-function CartItem ({ image, price, name, quantity, addToCart }) {
+function CartItem ({ image, price, name, quantity, removeFromCart, addToCart }) {
   return (
     <li>
       <img src={image} alt={name} />
@@ -14,7 +14,8 @@ function CartItem ({ image, price, name, quantity, addToCart }) {
       </div>
 
       <footer>
-        <small>Qty: {quantity}</small>
+        <small>Cantidad: {quantity}</small>
+        <button onClick={removeFromCart} className='remove-button'>-</button>
         <button onClick={addToCart} className='add-button'>+</button>
       </footer>
     </li>
@@ -27,19 +28,26 @@ function cartQuantity (cart) {
 
 export function Cart () {
   const cartCheckBoxId = useId()
-  const { cart, addToCart, clearCart } = useCart()
+  const { cart, removeFromCart, addToCart, clearCart } = useCart()
   const itemsQuantity = cartQuantity(cart)
 
   useEffect(() => {
     const storedCart = localStorage.getItem('cart')
+    clearCart()
 
     if (storedCart) {
       const parsedCart = JSON.parse(storedCart)
-      parsedCart.map((product) => ( addToCart(product) ))
+      parsedCart.map((product) => {
+        for (let i = 0; i < product.quantity; i++) {
+          addToCart(product)
+        }
+      })
     }
   }, [])
 
   useEffect(() => {
+    console.log("\n Set Cart")
+    console.log(cart)
     localStorage.setItem('cart', JSON.stringify(cart))
   }, [cart])
 
@@ -65,6 +73,7 @@ export function Cart () {
             <CartItem
               key={`cart-item-${product.id}`}
               {...product}
+              removeFromCart={() => removeFromCart(product)}
               addToCart={() => addToCart(product)}
             />
           ))}
@@ -73,6 +82,9 @@ export function Cart () {
         <div className='clear-button-content'>
           <button onClick={clearCart} className='clear-button'>
             <ClearCartIcon />
+          </button>
+          <button onClick={clearCart} className='navbar-button'>
+            Completar
           </button>
         </div>
       </aside>
