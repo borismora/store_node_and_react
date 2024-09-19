@@ -1,5 +1,5 @@
 import './Cart.css'
-import { useEffect, useId } from 'react'
+import { useEffect, useId, useState } from 'react'
 import { CartIcon, ClearCartIcon } from '../../ui/Icons'
 import { useCart } from '../../../hooks/useCart'
 import { LButton, AButton } from '../../ui/Button'
@@ -30,6 +30,7 @@ export function Cart () {
   const cartCheckBoxId = useId()
   const { cart, removeFromCart, addToCart, clearCart } = useCart()
   const itemsQuantity = cartQuantity(cart)
+  const [isCartVisible, setIsCartVisible] = useState(false) // Estado para controlar visibilidad del carrito
 
   useEffect(() => {
     const storedCart = localStorage.getItem('cart')
@@ -49,6 +50,25 @@ export function Cart () {
     localStorage.setItem('cart', JSON.stringify(cart))
   }, [cart])
 
+  useEffect(() => {
+    function handleClickOutside (event) {
+      const cartElement = document.querySelector('.cart')
+      if (cartElement && !cartElement.contains(event.target)) {
+        setIsCartVisible(false)
+      }
+    }
+
+    if (isCartVisible) {
+      document.addEventListener('mousedown', handleClickOutside)
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [isCartVisible])
+
   return (
     <>
       <LButton
@@ -60,38 +80,41 @@ export function Cart () {
               <CartIcon />
               {itemsQuantity}
             </>
-          )
+          ),
+          onClick: () => setIsCartVisible(!isCartVisible)
         }}
       />
       <input type="checkbox" id={cartCheckBoxId} hidden />
 
-      <aside className='cart'>
-        <ul>
-          {cart.map((product) => (
-            <CartItem
-              key={`cart-item-${product.id}`}
-              {...product}
-              removeFromCart={() => removeFromCart(product)}
-              addToCart={() => addToCart(product)}
+      {isCartVisible && (
+        <aside className='cart'>
+          <ul>
+            {cart.map((product) => (
+              <CartItem
+                key={`cart-item-${product.id}`}
+                {...product}
+                removeFromCart={() => removeFromCart(product)}
+                addToCart={() => addToCart(product)}
+              />
+            ))}
+          </ul>
+
+          <div className='clear-button-content'>
+            <button onClick={clearCart} className='clear-button'>
+              <ClearCartIcon />
+            </button>
+
+            <AButton
+              params={{
+                className: 'navbar-button',
+                title: 'Completar',
+                ...(cart.length > 0 && { href: '/checkout' })
+              }}
+              style={{ marginLeft: 'auto' }}
             />
-          ))}
-        </ul>
-
-        <div className='clear-button-content'>
-          <button onClick={clearCart} className='clear-button'>
-            <ClearCartIcon />
-          </button>
-
-          <AButton
-            params={{
-              className: 'navbar-button',
-              title: 'Completar',
-              href: '/checkout'
-            }}
-            style={{ marginLeft: 'auto' }}
-          />
-        </div>
-      </aside>
+          </div>
+        </aside>
+      )}
     </>
   )
 }

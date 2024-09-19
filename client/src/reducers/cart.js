@@ -25,10 +25,16 @@ export function CartReducer (state, action) {
       console.log(ActionPayload)
       console.log('productInCartIndex', productInCartIndex)
 
-      if (productInCartIndex >= 0 && state[productInCartIndex].quantity > 1) {
+      if (productInCartIndex >= 0) {
         const newState = structuredClone(state)
-        newState[productInCartIndex].quantity -= 1
-        return newState
+        if (state[productInCartIndex].quantity > 1) {
+          newState[productInCartIndex].quantity -= 1
+          return newState
+        }
+        else {
+          newState.splice(productInCartIndex, 1)
+          return newState
+        }
       }
 
       return [...state]
