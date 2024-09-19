@@ -64,6 +64,7 @@
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  width: 100%;
   box-sizing: border-box; /* Include padding and border in the width */
 }
 
@@ -81,6 +82,7 @@
 
 .box form button:hover {
   background-color: #1e63a0;
+  color: white;
 }
 
 /* Tabs styling */
@@ -102,10 +104,15 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  color: #080808;
 }
 
 .tabs button.active {
   background-color: #3775c0;
+  color: white;
+}
+
+.tabs button:hover {
   color: white;
 }
 

@@ -2,7 +2,7 @@ import './Cart.css'
 import { useEffect, useId } from 'react'
 import { CartIcon, ClearCartIcon } from '../../ui/Icons'
 import { useCart } from '../../../hooks/useCart'
-import { LButton } from '../../ui/Button'
+import { LButton, AButton } from '../../ui/Button'
 
 function CartItem ({ image, price, name, quantity, removeFromCart, addToCart }) {
   return (
@@ -46,8 +46,6 @@ export function Cart () {
   }, [])
 
   useEffect(() => {
-    console.log("\n Set Cart")
-    console.log(cart)
     localStorage.setItem('cart', JSON.stringify(cart))
   }, [cart])
 
@@ -83,9 +81,15 @@ export function Cart () {
           <button onClick={clearCart} className='clear-button'>
             <ClearCartIcon />
           </button>
-          <button onClick={clearCart} className='navbar-button'>
-            Completar
-          </button>
+
+          <AButton
+            params={{
+              className: 'navbar-button',
+              title: 'Completar',
+              href: '/checkout'
+            }}
+            style={{ marginLeft: 'auto' }}
+          />
         </div>
       </aside>
     </>

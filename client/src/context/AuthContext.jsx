@@ -16,8 +16,9 @@ export const AuthProvider = ({ children }) => {
   }, [])
 
   const login = (userData, setIsLoading) => {
-    const expirationDate = new Date(userData.user.createdAt)
+    const expirationDate = new Date()
     expirationDate.setDate(expirationDate.getDate() + 30) // Expira en 30 días
+    console.log(expirationDate)
     localStorageHelper.setItemWithExpiration('user', userData, expirationDate)
     setcurrentUser(userData)
     setIsLoading(false)

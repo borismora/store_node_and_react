@@ -36,12 +36,29 @@ const orderController = {
 
   add: async (req, res, next) => {
     try {
-      console.log(req.body)
+      // Extraer el token del header
+      const token = JwtService.jwtGetToken(req);
+      console.log("Token:", token); // Log del token
+
+      // Verificar y decodificar el token
+      const decoded = JwtService.jwtVerify(token);
+      console.log("Decoded Token:", decoded); // Log del token decodificado
+
+      // Obtener el userId del token decodificado
+      const userId = decoded.userId;
+      console.log("User ID:", userId); // Log del userId
+
+      // Verificar que userId no es undefined
+      if (!userId) {
+        throw new Error('User ID not found in token');
+      }
+
       const order = await Order.create(req.body);
       setTimeout(updateOrderStatus, 10000, order, 'pending');
 
-      return res.status(201).json(order);
+      return res.status(200).json(order);
     } catch (error) {
+      console.error("Error in get orders:", error); // Log del error
       next(error);
     }
   },

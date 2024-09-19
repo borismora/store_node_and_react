@@ -9,6 +9,7 @@ import Home from '../pages/Home'
 import Login from '../pages/Login';
 import NotFound from '../pages/NotFound';
 import Profile from '../pages/Profile';
+import Checkout from '../pages/Checkout';
 
 export default function RoutesModule () {
   return (
@@ -18,6 +19,7 @@ export default function RoutesModule () {
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/profile' element={<Profile />} />
+          <Route path='/checkout' element={<Checkout />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </Main>

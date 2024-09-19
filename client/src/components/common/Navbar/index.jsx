@@ -5,6 +5,7 @@ import useNavigation from '../../../hooks/useNavigation'
 import useFilters from '../../../hooks/useFilters'
 import { AButton } from '../../ui/Button'
 import { Cart } from '../../common/Cart'
+import { UserIcon } from '../../ui/Icons'
 
 export default function Navbar () {
   const { navigateTo } = useNavigation()
@@ -15,11 +16,13 @@ export default function Navbar () {
   const handleSearch = useCallback((e) => {
     if (e.key === 'Enter') {
       e.preventDefault()
+      const searchValue = e.target.value.trim()
+
       setFilters((prevState) => ({
         ...prevState,
-        search: e.target.value,
+        search: searchValue,
       }))
-      navigateTo({ newSearch: e.target.value, newPage: 1 })
+      navigateTo({ newRoute: '/', newSearch: searchValue || '', newPage: 1 })
     }
   }, [navigateTo, setFilters])
 
@@ -52,7 +55,11 @@ export default function Navbar () {
             <AButton
               params={{
                 className: 'navbar-button',
-                title: 'Iniciar Sesión',
+                title: (
+                  <>
+                    <UserIcon />Login
+                  </>
+                ),
                 href: '/login'
               }}
             />

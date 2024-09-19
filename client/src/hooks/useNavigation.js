@@ -4,10 +4,10 @@ export default function useNavigation () {
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
 
-  function navigateTo ({ newPage = '', newSearch = '' }) {
+  function navigateTo ({ newRoute = '', newPage = '', newSearch = '' }) {
     const page = newPage ? newPage : currentPage()
-    const search = newSearch ? newSearch : currentSearch()
-    navigate(`?page=${page}&search=${search}`)
+    const search = newSearch
+    navigate(`${newRoute}?page=${page}&search=${search}`)
   }
 
   function currentPage () {

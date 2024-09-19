@@ -1,5 +1,5 @@
 import { useAuth } from '../context/AuthContext'
-import fetchOrders from '../services/orders'
+import { fetchOrders, addOrder } from '../services/orders'
 
 export default function useOrders () {
   const { token } = useAuth()
@@ -9,5 +9,10 @@ export default function useOrders () {
     return response
   }
 
-  return { getOrders }
+  const createOrder = async (order) => {
+    const response = await addOrder({ token, order })
+    return response
+  }
+
+  return { getOrders, createOrder }
 }
