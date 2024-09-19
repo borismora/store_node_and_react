@@ -28,7 +28,7 @@ export default function Checkout () {
   const { createOrder } = useOrders()
 
   const allFieldsFilled = Object.values(formValues).every(value =>
-    typeof value === 'string' && value.trim() !== ''
+    typeof value === 'number' || (typeof value === 'string' && value.trim() !== '')
   );
 
   useEffect(() => {
@@ -55,6 +55,12 @@ export default function Checkout () {
       total
     }))
   }, [cart, user])
+
+  useEffect(() => {
+    console.log(`allFieldsFilled: ${allFieldsFilled}`)
+    console.log(`activeButton: ${activeButton}`)
+    console.log(Object.values(formValues))
+  }, [allFieldsFilled, activeButton])
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
